@@ -1,6 +1,6 @@
 # Dockerfiel for myapp frontend runs on apache
 FROM centos:7
-MAINTAINER mohanraz@gmail.com
+MAINTAINER ursnirmal@gmail.com
 RUN yum -y update
 RUN yum -y install httpd
 ADD code /var/www/html

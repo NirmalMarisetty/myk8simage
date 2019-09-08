@@ -1,8 +1,9 @@
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mycart-backend
-  namespace: mycart
+  name: test-backend
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -23,8 +24,8 @@ spec:
         tier: backend
     spec:
       containers:
-      - name: myappfe
-        image: nirmalmarisetty/myk8simage-be-080919:1.0
+      - name: myappbe
+        image: nirmalmarisetty/myk8simage-testbe-080919:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
