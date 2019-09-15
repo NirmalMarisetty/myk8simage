@@ -1,15 +1,16 @@
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mycart-frontend
-  namespace: mycart
+  name: test-backend
+  namespace: test
 spec:
   selector:
     matchLabels:
       app: myapp
-      tier: frontend
+      tier: backend
   replicas: 2
-  minReadySeconds: 60
+  minReadySeconds: 5
   progressDeadlineSeconds: 300
   revisionHistoryLimit: 5
   strategy:
@@ -20,11 +21,11 @@ spec:
     metadata:
       labels:
         app: myapp
-        tier: frontend
+        tier: backend
     spec:
       containers:
-      - name: mycart
-        image: gcr.io/google_containers/hpa-example
+      - name: myappbe
+        image: nirmalmarisetty/myk8simage-testbe-080919:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80

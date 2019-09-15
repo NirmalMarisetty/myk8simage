@@ -1,15 +1,16 @@
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mycart-frontend
+  name: myacart-backend
   namespace: mycart
 spec:
   selector:
     matchLabels:
       app: myapp
-      tier: frontend
+      tier: backend
   replicas: 2
-  minReadySeconds: 60
+  minReadySeconds: 5
   progressDeadlineSeconds: 300
   revisionHistoryLimit: 5
   strategy:
@@ -20,11 +21,11 @@ spec:
     metadata:
       labels:
         app: myapp
-        tier: frontend
+        tier: backend
     spec:
       containers:
-      - name: mycart
-        image: gcr.io/google_containers/hpa-example
+      - name: myappbe
+        image: mohanraz81/mycart-backend:2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -35,3 +36,16 @@ spec:
           requests:
             cpu: "0.2"
             memory: "200Mi"
+        env:
+          - name: "MY_DB_USER"
+            value: "mysqluser"
+          - name: "MY_DB_PASS"
+            value: "password"
+          - name: "MY_DB_NAME"
+            value: "mydatadb"
+          - name: "MY_DB_HOST_WRITE"
+            value: "mysql-0.mysql"
+          - name: "MY_DB_HOST_READ"
+            value: "mysql-read"
+
+

@@ -23,8 +23,8 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: mycart
-        image: gcr.io/google_containers/hpa-example
+      - name: myappfe
+        image: nirmalmarisetty/myk8simage-fe-080919:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
